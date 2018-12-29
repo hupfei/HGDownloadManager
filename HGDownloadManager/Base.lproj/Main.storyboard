@@ -1,24 +1,121 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="m9q-Nf-Nba">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--HGDownloadManager-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="RootViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bEg-9g-1Fb">
+                                <rect key="frame" x="157.5" y="164" width="60" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="bBa-Ri-OKY"/>
+                                    <constraint firstAttribute="height" constant="35" id="wbz-qh-2SR"/>
+                                </constraints>
+                                <state key="normal" title="视频1"/>
+                                <state key="selected" title="暂停"/>
+                                <connections>
+                                    <action selector="startDownloadItem:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KHh-ix-ArA"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="osA-s0-m70">
+                                <rect key="frame" x="157.5" y="229" width="60" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="1Fd-7O-bvC"/>
+                                    <constraint firstAttribute="width" constant="60" id="uWq-zE-64y"/>
+                                </constraints>
+                                <state key="normal" title="视频2"/>
+                                <state key="selected" title="暂停"/>
+                                <connections>
+                                    <action selector="startDownloadItem1:" destination="BYZ-38-t0r" eventType="touchUpInside" id="QlI-bm-yDv"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="osA-s0-m70" firstAttribute="centerX" secondItem="bEg-9g-1Fb" secondAttribute="centerX" id="W5T-qZ-iJf"/>
+                            <constraint firstItem="bEg-9g-1Fb" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="d29-9e-FEW"/>
+                            <constraint firstItem="osA-s0-m70" firstAttribute="top" secondItem="bEg-9g-1Fb" secondAttribute="bottom" constant="30" id="hns-PE-X8Y"/>
+                            <constraint firstItem="bEg-9g-1Fb" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="100" id="zlQ-WO-KAz"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <navigationItem key="navigationItem" title="HGDownloadManager" id="gGo-QB-E9R">
+                        <barButtonItem key="leftBarButtonItem" title="finished" id="sxx-M1-c15">
+                            <connections>
+                                <segue destination="aj8-rm-Q6O" kind="push" id="0Cg-Jr-frc"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="downloading" id="0Fz-Cm-iwu">
+                            <connections>
+                                <segue destination="eQD-6U-XeP" kind="push" id="jFA-5A-MSp"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="495" y="0.0"/>
+        </scene>
+        <!--下载中-->
+        <scene sceneID="DE2-DE-hFo">
+            <objects>
+                <viewController id="eQD-6U-XeP" customClass="DownloadingViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="tdt-e5-dhZ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="YIO-Yv-NTy"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="下载中" id="SuN-vQ-9lq"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9IB-0j-0sE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1302" y="-329"/>
+        </scene>
+        <!--下载完成-->
+        <scene sceneID="bR9-CW-p9s">
+            <objects>
+                <viewController id="aj8-rm-Q6O" customClass="FinishedViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="s4b-vg-mgY">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="DAG-Wq-ELe"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="下载完成" id="v86-wi-Bqp"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mRD-ng-Kae" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1302" y="377"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="odF-WH-VzK">
+            <objects>
+                <navigationController id="m9q-Nf-Nba" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="iJr-Cd-GqE">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="bif-Bf-gIK"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dbF-8n-xi9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-230" y="1"/>
         </scene>
     </scenes>
 </document>

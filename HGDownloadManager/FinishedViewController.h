@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  FinishedViewController.h
 //  HGDownloadManager
 //
 //  Created by hupfei on 2018/12/29.
@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+NS_ASSUME_NONNULL_BEGIN
 
+@interface FinishedViewController : UITableViewController
 
 @end
 
+NS_ASSUME_NONNULL_END

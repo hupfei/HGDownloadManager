@@ -7,25 +7,45 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		77924F39A048A213A1415910 /* Pods_HGDownloadManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF36A99396815F0082B22342 /* Pods_HGDownloadManager.framework */; };
+		CE1070A621D750FE004FD188 /* DownloadingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1070A521D750FE004FD188 /* DownloadingViewController.m */; };
+		CE1070A921D75119004FD188 /* FinishedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1070A821D75119004FD188 /* FinishedViewController.m */; };
 		CEC7239721D74612006ED3FB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC7239621D74612006ED3FB /* AppDelegate.m */; };
-		CEC7239A21D74612006ED3FB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC7239921D74612006ED3FB /* ViewController.m */; };
+		CEC7239A21D74612006ED3FB /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC7239921D74612006ED3FB /* RootViewController.m */; };
 		CEC7239D21D74612006ED3FB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEC7239B21D74612006ED3FB /* Main.storyboard */; };
 		CEC7239F21D74613006ED3FB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEC7239E21D74613006ED3FB /* Assets.xcassets */; };
 		CEC723A221D74613006ED3FB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEC723A021D74613006ED3FB /* LaunchScreen.storyboard */; };
 		CEC723A521D74613006ED3FB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC723A421D74613006ED3FB /* main.m */; };
+		CEC723B321D74804006ED3FB /* HGDownloadItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC723AE21D74804006ED3FB /* HGDownloadItem.m */; };
+		CEC723B421D74804006ED3FB /* HGDownloadUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC723AF21D74804006ED3FB /* HGDownloadUtils.m */; };
+		CEC723B521D74804006ED3FB /* HGDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC723B021D74804006ED3FB /* HGDownloadManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		90DBC2A6B2D7D5F36CB45C78 /* Pods-HGDownloadManager.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HGDownloadManager.release.xcconfig"; path = "Pods/Target Support Files/Pods-HGDownloadManager/Pods-HGDownloadManager.release.xcconfig"; sourceTree = "<group>"; };
+		AE66B017C99A7500BFDE8AEC /* Pods-HGDownloadManager.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HGDownloadManager.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HGDownloadManager/Pods-HGDownloadManager.debug.xcconfig"; sourceTree = "<group>"; };
+		CE1070A421D750FE004FD188 /* DownloadingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DownloadingViewController.h; sourceTree = "<group>"; };
+		CE1070A521D750FE004FD188 /* DownloadingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DownloadingViewController.m; sourceTree = "<group>"; };
+		CE1070A721D75119004FD188 /* FinishedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FinishedViewController.h; sourceTree = "<group>"; };
+		CE1070A821D75119004FD188 /* FinishedViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FinishedViewController.m; sourceTree = "<group>"; };
+		CE1070AA21D7518F004FD188 /* HGDownloadHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGDownloadHeader.h; sourceTree = "<group>"; };
 		CEC7239221D74612006ED3FB /* HGDownloadManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HGDownloadManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEC7239521D74612006ED3FB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		CEC7239621D74612006ED3FB /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		CEC7239821D74612006ED3FB /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		CEC7239921D74612006ED3FB /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		CEC7239821D74612006ED3FB /* RootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		CEC7239921D74612006ED3FB /* RootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		CEC7239C21D74612006ED3FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CEC7239E21D74613006ED3FB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CEC723A121D74613006ED3FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CEC723A321D74613006ED3FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CEC723A421D74613006ED3FB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		CEC723AD21D74804006ED3FB /* HGDownloadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGDownloadManager.h; sourceTree = "<group>"; };
+		CEC723AE21D74804006ED3FB /* HGDownloadItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HGDownloadItem.m; sourceTree = "<group>"; };
+		CEC723AF21D74804006ED3FB /* HGDownloadUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HGDownloadUtils.m; sourceTree = "<group>"; };
+		CEC723B021D74804006ED3FB /* HGDownloadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HGDownloadManager.m; sourceTree = "<group>"; };
+		CEC723B121D74804006ED3FB /* HGDownloadItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGDownloadItem.h; sourceTree = "<group>"; };
+		CEC723B221D74804006ED3FB /* HGDownloadUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGDownloadUtils.h; sourceTree = "<group>"; };
+		FF36A99396815F0082B22342 /* Pods_HGDownloadManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HGDownloadManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,17 +53,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77924F39A048A213A1415910 /* Pods_HGDownloadManager.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A805E18B8133606C589F2285 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				AE66B017C99A7500BFDE8AEC /* Pods-HGDownloadManager.debug.xcconfig */,
+				90DBC2A6B2D7D5F36CB45C78 /* Pods-HGDownloadManager.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		CC9394334B303E0518630FD0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FF36A99396815F0082B22342 /* Pods_HGDownloadManager.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		CEC7238921D74612006ED3FB = {
 			isa = PBXGroup;
 			children = (
 				CEC7239421D74612006ED3FB /* HGDownloadManager */,
 				CEC7239321D74612006ED3FB /* Products */,
+				A805E18B8133606C589F2285 /* Pods */,
+				CC9394334B303E0518630FD0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -60,13 +100,32 @@
 			children = (
 				CEC7239521D74612006ED3FB /* AppDelegate.h */,
 				CEC7239621D74612006ED3FB /* AppDelegate.m */,
-				CEC7239821D74612006ED3FB /* ViewController.h */,
-				CEC7239921D74612006ED3FB /* ViewController.m */,
+				CEC7239821D74612006ED3FB /* RootViewController.h */,
+				CEC7239921D74612006ED3FB /* RootViewController.m */,
+				CE1070A421D750FE004FD188 /* DownloadingViewController.h */,
+				CE1070A521D750FE004FD188 /* DownloadingViewController.m */,
+				CE1070A721D75119004FD188 /* FinishedViewController.h */,
+				CE1070A821D75119004FD188 /* FinishedViewController.m */,
+				CEC723AC21D74804006ED3FB /* HGDownloadManager */,
 				CEC7239B21D74612006ED3FB /* Main.storyboard */,
 				CEC7239E21D74613006ED3FB /* Assets.xcassets */,
 				CEC723A021D74613006ED3FB /* LaunchScreen.storyboard */,
 				CEC723A321D74613006ED3FB /* Info.plist */,
 				CEC723A421D74613006ED3FB /* main.m */,
+			);
+			path = HGDownloadManager;
+			sourceTree = "<group>";
+		};
+		CEC723AC21D74804006ED3FB /* HGDownloadManager */ = {
+			isa = PBXGroup;
+			children = (
+				CEC723B121D74804006ED3FB /* HGDownloadItem.h */,
+				CEC723AE21D74804006ED3FB /* HGDownloadItem.m */,
+				CEC723AD21D74804006ED3FB /* HGDownloadManager.h */,
+				CEC723B021D74804006ED3FB /* HGDownloadManager.m */,
+				CEC723B221D74804006ED3FB /* HGDownloadUtils.h */,
+				CEC723AF21D74804006ED3FB /* HGDownloadUtils.m */,
+				CE1070AA21D7518F004FD188 /* HGDownloadHeader.h */,
 			);
 			path = HGDownloadManager;
 			sourceTree = "<group>";
@@ -78,9 +137,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CEC723A821D74613006ED3FB /* Build configuration list for PBXNativeTarget "HGDownloadManager" */;
 			buildPhases = (
+				3F3DDCEA8AF77A90C80A9275 /* [CP] Check Pods Manifest.lock */,
 				CEC7238E21D74612006ED3FB /* Sources */,
 				CEC7238F21D74612006ED3FB /* Frameworks */,
 				CEC7239021D74612006ED3FB /* Resources */,
+				5F05960C60C1D2ADB0BE2A54 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -136,13 +197,67 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		3F3DDCEA8AF77A90C80A9275 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-HGDownloadManager-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5F05960C60C1D2ADB0BE2A54 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-HGDownloadManager/Pods-HGDownloadManager-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework",
+				"${BUILT_PRODUCTS_DIR}/LKDBHelper/LKDBHelper.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FMDB.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LKDBHelper.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HGDownloadManager/Pods-HGDownloadManager-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		CEC7238E21D74612006ED3FB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CEC7239A21D74612006ED3FB /* ViewController.m in Sources */,
+				CEC723B521D74804006ED3FB /* HGDownloadManager.m in Sources */,
+				CEC7239A21D74612006ED3FB /* RootViewController.m in Sources */,
+				CEC723B421D74804006ED3FB /* HGDownloadUtils.m in Sources */,
+				CEC723B321D74804006ED3FB /* HGDownloadItem.m in Sources */,
+				CE1070A921D75119004FD188 /* FinishedViewController.m in Sources */,
 				CEC723A521D74613006ED3FB /* main.m in Sources */,
+				CE1070A621D750FE004FD188 /* DownloadingViewController.m in Sources */,
 				CEC7239721D74612006ED3FB /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -283,11 +398,13 @@
 		};
 		CEC723A921D74613006ED3FB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AE66B017C99A7500BFDE8AEC /* Pods-HGDownloadManager.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TPUDJ2P2BW;
 				INFOPLIST_FILE = HGDownloadManager/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -300,11 +417,13 @@
 		};
 		CEC723AA21D74613006ED3FB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 90DBC2A6B2D7D5F36CB45C78 /* Pods-HGDownloadManager.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TPUDJ2P2BW;
 				INFOPLIST_FILE = HGDownloadManager/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
