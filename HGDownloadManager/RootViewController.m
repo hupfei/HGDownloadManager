@@ -23,7 +23,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    self.urls = @[@"https://mp4.1sj.tv/mp4/429783ccd0dc474749a21f0eaff9434b.mp4", @"http://192.168.3.45:8080/xiebuyazheng.mp4"];
+    self.urls = @[@"https://mp4.1sj.tv/mp4/429783ccd0dc474749a21f0eaff9434b.mp4", @"https://mp4.1sj.tv/mp4/05faa99115a3f3de6b31f4ce8b19bd36.mp4"];
     
     self.item = [[HGDownloadItem alloc] initWithUrl:self.urls[0] fileName:@"动漫" fileType:2];
     self.item1 = [[HGDownloadItem alloc] initWithUrl:self.urls[1] fileName:@"权利的游戏" fileType:1];

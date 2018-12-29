@@ -10,6 +10,10 @@
 		77924F39A048A213A1415910 /* Pods_HGDownloadManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF36A99396815F0082B22342 /* Pods_HGDownloadManager.framework */; };
 		CE1070A621D750FE004FD188 /* DownloadingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1070A521D750FE004FD188 /* DownloadingViewController.m */; };
 		CE1070A921D75119004FD188 /* FinishedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1070A821D75119004FD188 /* FinishedViewController.m */; };
+		CEAA7C8821D789DD001C9FBE /* DownloadChildCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEAA7C8521D789DD001C9FBE /* DownloadChildCell.xib */; };
+		CEAA7C8921D789DD001C9FBE /* DownloadChildCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAA7C8721D789DD001C9FBE /* DownloadChildCell.m */; };
+		CEAA7C8D21D789E9001C9FBE /* DownloadFinishedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEAA7C8A21D789E9001C9FBE /* DownloadFinishedCell.xib */; };
+		CEAA7C8E21D789E9001C9FBE /* DownloadFinishedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CEAA7C8C21D789E9001C9FBE /* DownloadFinishedCell.m */; };
 		CEC7239721D74612006ED3FB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC7239621D74612006ED3FB /* AppDelegate.m */; };
 		CEC7239A21D74612006ED3FB /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC7239921D74612006ED3FB /* RootViewController.m */; };
 		CEC7239D21D74612006ED3FB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEC7239B21D74612006ED3FB /* Main.storyboard */; };
@@ -29,6 +33,12 @@
 		CE1070A721D75119004FD188 /* FinishedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FinishedViewController.h; sourceTree = "<group>"; };
 		CE1070A821D75119004FD188 /* FinishedViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FinishedViewController.m; sourceTree = "<group>"; };
 		CE1070AA21D7518F004FD188 /* HGDownloadHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGDownloadHeader.h; sourceTree = "<group>"; };
+		CEAA7C8521D789DD001C9FBE /* DownloadChildCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DownloadChildCell.xib; sourceTree = "<group>"; };
+		CEAA7C8621D789DD001C9FBE /* DownloadChildCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadChildCell.h; sourceTree = "<group>"; };
+		CEAA7C8721D789DD001C9FBE /* DownloadChildCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadChildCell.m; sourceTree = "<group>"; };
+		CEAA7C8A21D789E9001C9FBE /* DownloadFinishedCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DownloadFinishedCell.xib; sourceTree = "<group>"; };
+		CEAA7C8B21D789E9001C9FBE /* DownloadFinishedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadFinishedCell.h; sourceTree = "<group>"; };
+		CEAA7C8C21D789E9001C9FBE /* DownloadFinishedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadFinishedCell.m; sourceTree = "<group>"; };
 		CEC7239221D74612006ED3FB /* HGDownloadManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HGDownloadManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEC7239521D74612006ED3FB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		CEC7239621D74612006ED3FB /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -106,6 +116,12 @@
 				CE1070A521D750FE004FD188 /* DownloadingViewController.m */,
 				CE1070A721D75119004FD188 /* FinishedViewController.h */,
 				CE1070A821D75119004FD188 /* FinishedViewController.m */,
+				CEAA7C8621D789DD001C9FBE /* DownloadChildCell.h */,
+				CEAA7C8721D789DD001C9FBE /* DownloadChildCell.m */,
+				CEAA7C8521D789DD001C9FBE /* DownloadChildCell.xib */,
+				CEAA7C8B21D789E9001C9FBE /* DownloadFinishedCell.h */,
+				CEAA7C8C21D789E9001C9FBE /* DownloadFinishedCell.m */,
+				CEAA7C8A21D789E9001C9FBE /* DownloadFinishedCell.xib */,
 				CEC723AC21D74804006ED3FB /* HGDownloadManager */,
 				CEC7239B21D74612006ED3FB /* Main.storyboard */,
 				CEC7239E21D74613006ED3FB /* Assets.xcassets */,
@@ -191,6 +207,8 @@
 			files = (
 				CEC723A221D74613006ED3FB /* LaunchScreen.storyboard in Resources */,
 				CEC7239F21D74613006ED3FB /* Assets.xcassets in Resources */,
+				CEAA7C8821D789DD001C9FBE /* DownloadChildCell.xib in Resources */,
+				CEAA7C8D21D789E9001C9FBE /* DownloadFinishedCell.xib in Resources */,
 				CEC7239D21D74612006ED3FB /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -256,8 +274,10 @@
 				CEC723B421D74804006ED3FB /* HGDownloadUtils.m in Sources */,
 				CEC723B321D74804006ED3FB /* HGDownloadItem.m in Sources */,
 				CE1070A921D75119004FD188 /* FinishedViewController.m in Sources */,
+				CEAA7C8E21D789E9001C9FBE /* DownloadFinishedCell.m in Sources */,
 				CEC723A521D74613006ED3FB /* main.m in Sources */,
 				CE1070A621D750FE004FD188 /* DownloadingViewController.m in Sources */,
+				CEAA7C8921D789DD001C9FBE /* DownloadChildCell.m in Sources */,
 				CEC7239721D74612006ED3FB /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

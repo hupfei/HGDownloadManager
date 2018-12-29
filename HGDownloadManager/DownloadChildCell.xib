@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="60" id="KGk-i7-Jjw" customClass="DownloadChildCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="59.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="任务名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uIT-9S-iAl">
+                        <rect key="frame" x="10" y="0.0" width="220" height="27.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" tag="1" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bOn-pu-US4">
+                        <rect key="frame" x="280" y="0.0" width="40" height="59.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="40" id="Zh5-mQ-B6X"/>
+                        </constraints>
+                        <state key="normal" image="download_delete"/>
+                        <connections>
+                            <action selector="btnAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="w3o-6o-cze"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6jS-Tk-US8">
+                        <rect key="frame" x="240" y="0.0" width="40" height="59.5"/>
+                        <state key="normal" image="download_pause"/>
+                        <state key="selected" image="download_start"/>
+                        <connections>
+                            <action selector="btnAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="joL-Mu-1bx"/>
+                        </connections>
+                    </button>
+                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progressViewStyle="bar" translatesAutoresizingMaskIntoConstraints="NO" id="Nhk-d2-9pF">
+                        <rect key="frame" x="10" y="27.5" width="220" height="6"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="5" id="j0A-R9-S31"/>
+                        </constraints>
+                        <color key="progressTintColor" red="0.27058823529999998" green="0.90196078430000004" blue="0.99215686270000003" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="trackTintColor" red="0.11764705882352941" green="0.13725490196078433" blue="0.22745098039215686" alpha="1" colorSpace="calibratedRGB"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="2.5"/>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                        </userDefinedRuntimeAttributes>
+                    </progressView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0M/s" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wPV-hG-Phv">
+                        <rect key="frame" x="10" y="32.5" width="73.5" height="27"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <color key="textColor" red="0.44705882352941173" green="0.50588235294117645" blue="0.63921568627450975" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0%" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HgP-cS-3Ao">
+                        <rect key="frame" x="156.5" y="32.5" width="73.5" height="27"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <color key="textColor" red="0.44705882349999998" green="0.50588235290000005" blue="0.63921568630000003" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0G/0G" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FgA-ME-Tpr">
+                        <rect key="frame" x="83.5" y="32.5" width="73" height="27"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <color key="textColor" red="0.44705882349999998" green="0.50588235290000005" blue="0.63921568630000003" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="bOn-pu-US4" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="AA8-VM-DoN"/>
+                    <constraint firstItem="bOn-pu-US4" firstAttribute="leading" secondItem="6jS-Tk-US8" secondAttribute="trailing" id="CWx-2O-K0c"/>
+                    <constraint firstItem="Nhk-d2-9pF" firstAttribute="top" secondItem="uIT-9S-iAl" secondAttribute="bottom" id="HT4-SE-prF"/>
+                    <constraint firstItem="FgA-ME-Tpr" firstAttribute="width" secondItem="wPV-hG-Phv" secondAttribute="width" id="Joq-8q-E6E"/>
+                    <constraint firstItem="uIT-9S-iAl" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="KkD-fy-6dH"/>
+                    <constraint firstItem="uIT-9S-iAl" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="KxU-6b-uxW"/>
+                    <constraint firstItem="wPV-hG-Phv" firstAttribute="top" secondItem="Nhk-d2-9pF" secondAttribute="bottom" id="LPO-yn-Qdk"/>
+                    <constraint firstItem="Nhk-d2-9pF" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="OIn-9c-pEN"/>
+                    <constraint firstItem="6jS-Tk-US8" firstAttribute="leading" secondItem="uIT-9S-iAl" secondAttribute="trailing" constant="10" id="QWz-H0-vYJ"/>
+                    <constraint firstItem="6jS-Tk-US8" firstAttribute="width" secondItem="bOn-pu-US4" secondAttribute="width" id="YT2-QL-k40"/>
+                    <constraint firstItem="HgP-cS-3Ao" firstAttribute="width" secondItem="wPV-hG-Phv" secondAttribute="width" id="Ziz-tR-3LM"/>
+                    <constraint firstAttribute="bottom" secondItem="wPV-hG-Phv" secondAttribute="bottom" id="d6b-oR-88z"/>
+                    <constraint firstItem="wPV-hG-Phv" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="eda-XX-t0w"/>
+                    <constraint firstAttribute="bottom" secondItem="HgP-cS-3Ao" secondAttribute="bottom" id="f7d-IZ-ZYQ"/>
+                    <constraint firstAttribute="trailing" secondItem="bOn-pu-US4" secondAttribute="trailing" id="k52-mx-Mu3"/>
+                    <constraint firstItem="FgA-ME-Tpr" firstAttribute="leading" secondItem="wPV-hG-Phv" secondAttribute="trailing" id="lRR-ET-klT"/>
+                    <constraint firstAttribute="bottom" secondItem="6jS-Tk-US8" secondAttribute="bottom" id="lp8-Xq-03v"/>
+                    <constraint firstItem="HgP-cS-3Ao" firstAttribute="leading" secondItem="FgA-ME-Tpr" secondAttribute="trailing" id="mMt-Yc-Jyu"/>
+                    <constraint firstItem="6jS-Tk-US8" firstAttribute="leading" secondItem="Nhk-d2-9pF" secondAttribute="trailing" constant="10" id="pam-wG-8jr"/>
+                    <constraint firstItem="Nhk-d2-9pF" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="sUq-rf-caM"/>
+                    <constraint firstItem="6jS-Tk-US8" firstAttribute="leading" secondItem="HgP-cS-3Ao" secondAttribute="trailing" constant="10" id="t4R-KU-xIH"/>
+                    <constraint firstAttribute="bottom" secondItem="FgA-ME-Tpr" secondAttribute="bottom" id="tTX-8c-Gds"/>
+                    <constraint firstItem="HgP-cS-3Ao" firstAttribute="top" secondItem="Nhk-d2-9pF" secondAttribute="bottom" id="wMq-CZ-UVp"/>
+                    <constraint firstItem="FgA-ME-Tpr" firstAttribute="top" secondItem="Nhk-d2-9pF" secondAttribute="bottom" id="yto-Wb-wqn"/>
+                    <constraint firstAttribute="bottom" secondItem="bOn-pu-US4" secondAttribute="bottom" id="ytr-Dy-ff9"/>
+                    <constraint firstItem="6jS-Tk-US8" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="z34-eI-M7d"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" red="0.050980392156862744" green="0.062745098039215685" blue="0.10980392156862745" alpha="1" colorSpace="calibratedRGB"/>
+            <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="nameLabel" destination="uIT-9S-iAl" id="uov-Yq-fO8"/>
+                <outlet property="progressView" destination="Nhk-d2-9pF" id="t0z-Q7-FFu"/>
+                <outlet property="sizeLabel" destination="FgA-ME-Tpr" id="euU-Ft-HQN"/>
+                <outlet property="sizePercentLabel" destination="HgP-cS-3Ao" id="CCd-GM-Zyb"/>
+                <outlet property="speedLabel" destination="wPV-hG-Phv" id="bo5-am-kbF"/>
+                <outlet property="startOrPauseBtn" destination="6jS-Tk-US8" id="Fn0-o5-JDy"/>
+            </connections>
+            <point key="canvasLocation" x="52.799999999999997" y="48.575712143928037"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="download_delete" width="25" height="25"/>
+        <image name="download_pause" width="25" height="25"/>
+        <image name="download_start" width="25" height="25"/>
+    </resources>
+</document>
