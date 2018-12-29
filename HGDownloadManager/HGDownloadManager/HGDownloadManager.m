@@ -192,12 +192,12 @@
 
 //获取所有的未完成的下载item
 - (nonnull NSArray *)downloadList {
-    return [self.dbHelper search:HGDownloadItem.class withSQL:@"select * from @t where downloadStatus != %lu ORDER BY createTime", HGDownloadStatusFinished];
+    return [self.dbHelper search:HGDownloadItem.class where:[NSString stringWithFormat:@"downloadStatus!=%@", @(HGDownloadStatusFinished)] orderBy:@"createTime" offset:0 count:0];
 }
 
 //获取所有已完成的下载item
 - (nonnull NSArray *)finishList {
-    return [self.dbHelper search:HGDownloadItem.class withSQL:@"select * from @t where downloadStatus = %lu ORDER BY createTime", HGDownloadStatusFinished];
+    return [self.dbHelper search:HGDownloadItem.class where:@{@"downloadStatus":@(HGDownloadStatusFinished)} orderBy:@"createTime" offset:0 count:0];
 }
 
 #pragma mark- private method
@@ -259,7 +259,7 @@ totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite {
         item.progressHandler(totalBytesWritten, totalBytesExpectedToWrite);
     }
 
-    NSLog(@"percent:%.2f%%",(float)totalBytesWritten / totalBytesExpectedToWrite * 100);
+//    NSLog(@"percent:%.2f%%",(float)totalBytesWritten / totalBytesExpectedToWrite * 100);
 }
 
 /*

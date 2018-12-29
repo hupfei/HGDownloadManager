@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface DownloadChildCell : UITableViewCell
+@interface DownloadChildCell : UITableViewCell<HGDownloadItemDelegate>
 
 @property (nonatomic, strong) HGDownloadItem *item;
 

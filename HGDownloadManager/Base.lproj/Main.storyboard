@@ -55,12 +55,12 @@
                     <navigationItem key="navigationItem" title="HGDownloadManager" id="gGo-QB-E9R">
                         <barButtonItem key="leftBarButtonItem" title="finished" id="sxx-M1-c15">
                             <connections>
-                                <segue destination="aj8-rm-Q6O" kind="push" id="0Cg-Jr-frc"/>
+                                <segue destination="Naf-B5-TFZ" kind="push" id="sCA-G6-QFf"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="downloading" id="0Fz-Cm-iwu">
                             <connections>
-                                <segue destination="eQD-6U-XeP" kind="push" id="jFA-5A-MSp"/>
+                                <segue destination="d7Q-xM-Ul0" kind="push" id="8lc-Bp-Zxi"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -69,37 +69,63 @@
             </objects>
             <point key="canvasLocation" x="495" y="0.0"/>
         </scene>
-        <!--下载中-->
-        <scene sceneID="DE2-DE-hFo">
-            <objects>
-                <viewController id="eQD-6U-XeP" customClass="DownloadingViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="tdt-e5-dhZ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="YIO-Yv-NTy"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="下载中" id="SuN-vQ-9lq"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9IB-0j-0sE" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1302" y="-329"/>
-        </scene>
         <!--下载完成-->
-        <scene sceneID="bR9-CW-p9s">
+        <scene sceneID="IEA-zO-tQG">
             <objects>
-                <viewController id="aj8-rm-Q6O" customClass="FinishedViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="s4b-vg-mgY">
+                <tableViewController id="Naf-B5-TFZ" customClass="FinishedViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="TMr-Xe-mhb">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="DAG-Wq-ELe"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="下载完成" id="v86-wi-Bqp"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="mRD-ng-Kae" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Wv4-EX-dm3">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Wv4-EX-dm3" id="PZj-qC-SkN">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Naf-B5-TFZ" id="I4k-zV-adT"/>
+                            <outlet property="delegate" destination="Naf-B5-TFZ" id="qan-Bb-Po3"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="下载完成" id="Kea-Nn-Xrs"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xVI-ye-smv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1302" y="377"/>
+            <point key="canvasLocation" x="1321" y="-259"/>
+        </scene>
+        <!--下载中-->
+        <scene sceneID="6DF-Oz-xmA">
+            <objects>
+                <tableViewController id="d7Q-xM-Ul0" customClass="DownloadingViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="FRe-Sh-WxS">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="bSI-5T-hXb">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bSI-5T-hXb" id="YO4-zt-0wp">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="d7Q-xM-Ul0" id="bgG-SA-sKW"/>
+                            <outlet property="delegate" destination="d7Q-xM-Ul0" id="h2Q-dR-MSb"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="下载中" id="wSp-gx-sH0"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sFn-GN-L3m" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1321" y="492"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="odF-WH-VzK">

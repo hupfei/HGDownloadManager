@@ -26,7 +26,7 @@
 }
 
 - (IBAction)deleteAction:(UIButton *)sender {
-    
+    [[HGDownloadManager manager] stopDownloadWithItem:self.item];
 }
 
 
