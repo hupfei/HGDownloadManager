@@ -42,7 +42,7 @@ NSString * const kDownloadTaskFinishedNotification = @"DownloadTaskFinishedNotif
     __weak typeof(self) weakSelf = self;
     return ^(int64_t downloadedSize, int64_t totalSize){
         weakSelf.downloadedSize = downloadedSize;
-        if (weakSelf.totalSize == 0) {
+        if (weakSelf.totalSize == 0 || weakSelf.downloadStatus == HGDownloadStatusFinished) {
             weakSelf.totalSize = totalSize;
             [weakSelf updateToDB];
         }
@@ -94,7 +94,7 @@ NSString * const kDownloadTaskFinishedNotification = @"DownloadTaskFinishedNotif
     NSUInteger speed = _downloadedSize - _preDownloadedSize;
     _preDownloadedSize = _downloadedSize;
     dispatch_async(dispatch_get_main_queue(), ^{
-        if ([self.delegate respondsToSelector:@selector(downloadItem:speedStr:)]) {
+        if (self.delegate && [self.delegate respondsToSelector:@selector(downloadItem:speedStr:)]) {
             [self.delegate downloadItem:self speedStr:[NSString stringWithFormat:@"%@/S",[HGDownloadUtils fileSizeStringFromBytes:speed]]];
         }
     });

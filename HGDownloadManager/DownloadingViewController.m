@@ -31,8 +31,8 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    DownloadChildCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DownloadChildCell" forIndexPath:indexPath];
     HGDownloadItem *item = self.dataArray[indexPath.row];
+    DownloadChildCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DownloadChildCell" forIndexPath:indexPath];
     cell.item = item;
     item.delegate = cell;
     

@@ -76,14 +76,10 @@
 
 #pragma mark- HGDownloadItem delegate
 - (void)downloadItem:(nonnull HGDownloadItem *)item statusChanged:(HGDownloadStatus)status {
-    NSLog(@"setDownloadStatus");
-
     [self setDownloadStatus:item.downloadStatus speed:@""];
 }
 
 - (void)downloadItem:(nonnull HGDownloadItem *)item downloadedSize:(int64_t)downloadedSize totalSize:(int64_t)totalSize {
-    NSLog(@"changeSizeLblDownloadedSize");
-
     [self changeSizeLblDownloadedSize:downloadedSize totalSize:totalSize];
 }
 

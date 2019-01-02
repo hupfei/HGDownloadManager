@@ -49,6 +49,14 @@
     }
 }
 
+- (IBAction)deleteAction:(UIButton *)sender {
+    NSError *error;
+    BOOL result = [[NSFileManager defaultManager] removeItemAtPath:[HGDownloadManager manager].savePath error:&error];
+    if (result && error == nil) {
+        NSLog(@"删除成功");
+    }
+}
+
 -(void)localFile {
     NSString *BASE_PATH = [HGDownloadManager manager].savePath;
     

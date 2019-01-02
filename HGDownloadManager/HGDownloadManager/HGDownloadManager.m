@@ -58,7 +58,7 @@
     
     self.itemDict = [NSMutableDictionary dictionary];
     __weak typeof(self) weakSelf = self;
-    [self.dbHelper search:HGDownloadItem.class where:nil orderBy:@"createTime" offset:0 count:10000 callback:^(NSMutableArray * _Nullable array) {
+    [self.dbHelper search:HGDownloadItem.class where:nil orderBy:@"createTime" offset:0 count:0 callback:^(NSMutableArray * _Nullable array) {
         for (HGDownloadItem *item in array) {
             weakSelf.itemDict[item.downloadUrl] = item;
         }
@@ -192,7 +192,14 @@
 
 //获取所有的未完成的下载item
 - (nonnull NSArray *)downloadList {
-    return [self.dbHelper search:HGDownloadItem.class where:[NSString stringWithFormat:@"downloadStatus!=%@", @(HGDownloadStatusFinished)] orderBy:@"createTime" offset:0 count:0];
+//    return [self.dbHelper search:HGDownloadItem.class where:[NSString stringWithFormat:@"downloadStatus!=%@", @(HGDownloadStatusFinished)] orderBy:@"createTime" offset:0 count:0];
+    NSMutableArray *listArray = [NSMutableArray array];
+    for (HGDownloadItem *item in self.itemDict.allValues) {
+        if (item.downloadStatus != HGDownloadStatusFinished) {
+            [listArray addObject:item];
+        }
+    }
+    return listArray.copy;
 }
 
 //获取所有已完成的下载item
@@ -221,6 +228,10 @@
 }
 
 #pragma mark - NSURLSessionDownloadDelegate
+- (void)URLSessionDidFinishEventsForBackgroundURLSession:(NSURLSession *)session {
+    NSLog(@"URLSessionDidFinishEventsForBackgroundURLSession");
+}
+
 - (void)URLSession:(NSURLSession *)session
       downloadTask:(NSURLSessionDownloadTask *)downloadTask
 didFinishDownloadingToURL:(NSURL *)location {
@@ -230,6 +241,10 @@ didFinishDownloadingToURL:(NSURL *)location {
     HGDownloadItem *item = [self itemWithUrl:url];
     if (item == nil) {
         return;
+    }
+    int64_t itemSize = [HGDownloadUtils fileSizeWithPath:location.path];
+    if (itemSize > 0 && item.totalSize == 0) {
+        item.totalSize = itemSize;
     }
     NSError *error;
     NSString *movePath = [self.savePath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.%@", item.fileName, [HGDownloadUtils getFileExtensionWithTask:downloadTask]]];
@@ -241,7 +256,8 @@ didFinishDownloadingToURL:(NSURL *)location {
     }
     item.filePath = movePath;
     item.statusHandler(item.downloadStatus);
-    
+    item.progressHandler(itemSize, itemSize);
+
     [self.runningItems removeObject:item];
     
     //移除保存的resumeData
@@ -258,8 +274,6 @@ totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite {
     if (item) {
         item.progressHandler(totalBytesWritten, totalBytesExpectedToWrite);
     }
-
-//    NSLog(@"percent:%.2f%%",(float)totalBytesWritten / totalBytesExpectedToWrite * 100);
 }
 
 /*
