@@ -12,8 +12,6 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef void (^BGCompletedHandler)(void);
-
 @interface HGDownloadManager : NSObject
 
 @property (nonatomic, copy) NSString *savePath;
@@ -32,11 +30,6 @@ typedef void (^BGCompletedHandler)(void);
 /** 暂停一个后台下载任务 */
 - (void)pauseDownloadWithItem:(HGDownloadItem *)item;
 
-/** 暂停所有的下载 */
-//+ (void)pauseAllDownloadTask;
-///** 开始所有的下载 */
-//+ (void)resumeAllDownloadTask;
-
 /** 删除一个后台下载任务，同时会删除当前任务下载的缓存数据 */
 - (void)stopDownloadWithItem:(HGDownloadItem *)item;
 
@@ -44,12 +37,12 @@ typedef void (^BGCompletedHandler)(void);
 - (HGDownloadItem *)itemWithUrl:(NSString *)url;
 
 /** 获取所有的未完成的下载item */
-- (nonnull NSArray *)downloadList;
+- (nonnull NSArray *)unfinishedItems;
 
 /** 获取所有已完成的下载item */
-- (nonnull NSArray *)finishList;
+- (nonnull NSArray *)finishedItems;
 
--(void)addCompletionHandler:(BGCompletedHandler)handler identifier:(NSString *)identifier;
+-(void)addCompletionHandler:(void (^)(void))completionHandler identifier:(NSString *)identifier;
 
 @end
 

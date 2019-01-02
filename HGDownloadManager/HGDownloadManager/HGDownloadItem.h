@@ -18,7 +18,6 @@ typedef NS_ENUM(NSUInteger, HGDownloadStatus) {
     HGDownloadStatusWaiting = 0,
     HGDownloadStatusDownloading,
     HGDownloadStatusPaused,
-    HGDownloadStatusCanceled,
     HGDownloadStatusFinished,
     HGDownloadStatusFailed
 };

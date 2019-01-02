@@ -21,7 +21,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.dataArray = [[HGDownloadManager manager] downloadList];
+    self.dataArray = [[HGDownloadManager manager] unfinishedItems];
     
     [self.tableView registerNib:[UINib nibWithNibName:@"DownloadChildCell" bundle:nil] forCellReuseIdentifier:@"DownloadChildCell"];
 }

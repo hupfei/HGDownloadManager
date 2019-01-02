@@ -40,6 +40,8 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
+        self.maxTaskCount = 3;
+        
         NSString *bundleId = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleIdentifier"];
         NSString *identifier = [NSString stringWithFormat:@"%@.HGDownloadManager", bundleId];
         NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration backgroundSessionConfigurationWithIdentifier:identifier];
@@ -54,7 +56,7 @@
 }
 
 - (void)configWithMaxTaskCount:(NSInteger)count {
-    self.maxTaskCount = 3;
+    self.maxTaskCount = count;
     
     self.itemDict = [NSMutableDictionary dictionary];
     __weak typeof(self) weakSelf = self;
@@ -88,7 +90,7 @@
 
 - (NSString *)savePath {
     if (!_savePath) {
-        NSString *saveDir = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, true).firstObject;
+        NSString *saveDir = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES).firstObject;
         _savePath = [saveDir stringByAppendingPathComponent:@"HGDownload"];
         [HGDownloadUtils createPathIfNotExist:_savePath];
         NSLog(@"%@", _savePath);
@@ -98,8 +100,9 @@
 
 #pragma mark- public method
 
-- (void)addCompletionHandler:(BGCompletedHandler)handler identifier:(NSString *)identifier {
+-(void)addCompletionHandler:(void (^)(void))completionHandler identifier:(NSString *)identifier {
     NSLog(@"addCompletionHandler:%@", identifier);
+    completionHandler();
 }
 
 - (void)startDownloadWithUrl:(NSString *)url fileName:(NSString *)fileName {
@@ -118,6 +121,8 @@
         item.downloadStatus = HGDownloadStatusWaiting;
         item.statusHandler(HGDownloadStatusWaiting);
         [self.waittingItems addObject:item];
+        //添加到下载队列
+        self.itemDict[item.downloadUrl] = item;
         return;
     }
     
@@ -142,6 +147,10 @@
 //继续下载
 - (void)resumeDownloadWithItem:(HGDownloadItem *)item {
     NSData *fileResumeData = [NSData dataWithContentsOfFile:[self getResumeDataPathWithUrl:item.downloadUrl]];
+    if (fileResumeData == nil) {
+        [self startDownloadWithItem:item];
+        return;
+    }
     item.downloadTask = [self.session downloadTaskWithResumeData:item.resumeData?:fileResumeData];
     [item.downloadTask resume];
     
@@ -165,8 +174,10 @@
     if (item == nil) {
         return;
     }
-    item.downloadStatus = HGDownloadStatusCanceled;
-    [item.downloadTask cancel];
+    if (item.downloadStatus == HGDownloadStatusDownloading) {
+        [self.runningItems removeObject:item];
+    }
+    [self.itemDict removeObjectForKey:item.downloadUrl];
     
     //删除下载文件
     [HGDownloadUtils removeFileIfExist:item.filePath];
@@ -179,6 +190,8 @@
     if (isExist) {
         [item deleteToDB];
     }
+    
+    [item.downloadTask cancel];
 }
 
 - (HGDownloadItem *)itemWithUrl:(NSString *)url {
@@ -191,7 +204,7 @@
 }
 
 //获取所有的未完成的下载item
-- (nonnull NSArray *)downloadList {
+- (nonnull NSArray *)unfinishedItems {
 //    return [self.dbHelper search:HGDownloadItem.class where:[NSString stringWithFormat:@"downloadStatus!=%@", @(HGDownloadStatusFinished)] orderBy:@"createTime" offset:0 count:0];
     NSMutableArray *listArray = [NSMutableArray array];
     for (HGDownloadItem *item in self.itemDict.allValues) {
@@ -203,17 +216,25 @@
 }
 
 //获取所有已完成的下载item
-- (nonnull NSArray *)finishList {
+- (nonnull NSArray *)finishedItems {
     return [self.dbHelper search:HGDownloadItem.class where:@{@"downloadStatus":@(HGDownloadStatusFinished)} orderBy:@"createTime" offset:0 count:0];
 }
 
 #pragma mark- private method
-- (void)startNextDownload {
+
+/**
+ 开始下一个下载任务
+
+ @param curItem 当前正在下载的item
+ */
+- (void)startNextItemAfterDeleteCurItem:(HGDownloadItem *)curItem {
+    [self.runningItems removeObject:curItem];
+    
     HGDownloadItem *item = self.waittingItems.firstObject;
     if (item && item.downloadStatus == HGDownloadStatusWaiting) {
-        [self.waittingItems removeObject:item];
         [self startDownloadWithItem:item];
-    }else{
+        [self.waittingItems removeObject:item];
+    } else {
         NSLog(@"[startNextDownload] all download task finished");
     }
 }
@@ -227,19 +248,48 @@
     return localFileSize>0 && localFileSize == item.totalSize;
 }
 
-#pragma mark - NSURLSessionDownloadDelegate
-- (void)URLSessionDidFinishEventsForBackgroundURLSession:(NSURLSession *)session {
-    NSLog(@"URLSessionDidFinishEventsForBackgroundURLSession");
+- (HGDownloadItem *)itemWithDownloadTask:(NSURLSessionDownloadTask *)task {
+    NSString *url = [HGDownloadUtils urlStrWithDownloadTask:task];
+    return [self itemWithUrl:url];
 }
 
+
+#pragma mark - NSURLSessionDownloadDelegate
+/* 应用在后台，而且后台所有下载任务完成后，
+ * 在所有其他NSURLSession和NSURLSessionDownloadTask委托方法执行完后回调，
+ * 可以在该方法中做下载数据管理和UI刷新
+ */
+- (void)URLSessionDidFinishEventsForBackgroundURLSession:(NSURLSession *)session {
+    
+}
+
+/* 下载过程中调用，用于跟踪下载进度
+ * bytesWritten为单次下载大小
+ * totalBytesWritten为当当前一共下载大小
+ * totalBytesExpectedToWrite为文件大小
+ */
+- (void)URLSession:(NSURLSession *)session
+      downloadTask:(NSURLSessionDownloadTask *)downloadTask
+      didWriteData:(int64_t)bytesWritten
+ totalBytesWritten:(int64_t)totalBytesWritten
+totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite {
+    HGDownloadItem *item = [self itemWithDownloadTask:downloadTask];
+    if (item) {
+        item.progressHandler(totalBytesWritten, totalBytesExpectedToWrite);
+    }
+}
+
+//下载完成
 - (void)URLSession:(NSURLSession *)session
       downloadTask:(NSURLSessionDownloadTask *)downloadTask
 didFinishDownloadingToURL:(NSURL *)location {
-    [self startNextDownload];
+    HGDownloadItem *item = [self itemWithDownloadTask:downloadTask];
+    
+    [self startNextItemAfterDeleteCurItem:item];
 
-    NSString *url = [HGDownloadUtils urlStrWithDownloadTask:downloadTask];
-    HGDownloadItem *item = [self itemWithUrl:url];
     if (item == nil) {
+        //数据库中找不到该记录
+        [HGDownloadUtils removeFileIfExist:[self getResumeDataPathWithUrl:item.downloadUrl]];
         return;
     }
     int64_t itemSize = [HGDownloadUtils fileSizeWithPath:location.path];
@@ -257,71 +307,44 @@ didFinishDownloadingToURL:(NSURL *)location {
     item.filePath = movePath;
     item.statusHandler(item.downloadStatus);
     item.progressHandler(itemSize, itemSize);
-
-    [self.runningItems removeObject:item];
     
     //移除保存的resumeData
     [HGDownloadUtils removeFileIfExist:[self getResumeDataPathWithUrl:item.downloadUrl]];
 }
 
-- (void)URLSession:(NSURLSession *)session
-      downloadTask:(NSURLSessionDownloadTask *)downloadTask
-      didWriteData:(int64_t)bytesWritten
- totalBytesWritten:(int64_t)totalBytesWritten
-totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite {
-    NSString *url = [HGDownloadUtils urlStrWithDownloadTask:downloadTask];
-    HGDownloadItem *item = [self itemWithUrl:url];
-    if (item) {
-        item.progressHandler(totalBytesWritten, totalBytesExpectedToWrite);
-    }
-}
-
-/*
- * 该方法下载成功和失败都会回调
+/* 在任务下载完成、下载失败
+ * 或者是应用被杀掉后，重新启动应用并创建相关identifier的Session时调用
  */
 - (void)URLSession:(NSURLSession *)session
               task:(NSURLSessionDownloadTask *)downloadTask
 didCompleteWithError:(NSError *)error {
-    if (!error){
-        return;
-    }
+    HGDownloadItem *item = [self itemWithDownloadTask:downloadTask];
+    [self startNextItemAfterDeleteCurItem:item];
     
     NSData *resumeData = [error.userInfo objectForKey:NSURLSessionDownloadTaskResumeData];
-    if (resumeData == nil) {
+    if (!error || resumeData == nil){
         return;
     }
     
-    //下载失败/暂停
-    NSString *url = [HGDownloadUtils urlStrWithDownloadTask:downloadTask];
-    HGDownloadItem *item = [self itemWithUrl:url];
-    if (item == nil || item.downloadStatus == HGDownloadStatusCanceled) {
-        if (item.downloadStatus == HGDownloadStatusCanceled) {
-            [self.runningItems removeObject:item];
-            [self.waittingItems removeObject:item];
-        }
-        
-        //开始下一个下载
-        [self startNextDownload];
+    if (item == nil) {
+        //数据库中找不到该记录
+        [HGDownloadUtils removeFileIfExist:[self getResumeDataPathWithUrl:item.downloadUrl]];
         return;
     }
     
-    //开始下一个下载
-    [self startNextDownload];
-    
+    //用户暂停或者下载失败
     item.resumeData = resumeData;
     if (item.downloadStatus != HGDownloadStatusPaused) {
         //用户手动暂停的则不需要改变状态
         item.downloadStatus = HGDownloadStatusFailed;
     }
     item.statusHandler(item.downloadStatus);
-    
-    [self.runningItems removeObject:item];
     [self.waittingItems addObject:item];
     
+    //保存resumeData
     NSString *resumeDataPath = [self getResumeDataPathWithUrl:item.downloadUrl];
     [HGDownloadUtils removeFileIfExist:resumeDataPath];
-    BOOL isWriteData = [resumeData writeToFile:resumeDataPath atomically:YES];
-    if (isWriteData) { NSLog(@"resumeData 文件写入成功"); }
+    [resumeData writeToFile:resumeDataPath atomically:YES];
 }
 
 @end
