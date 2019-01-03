@@ -37,8 +37,10 @@ typedef void (^HGStatusHandler)(HGDownloadStatus status);
 
 @property (nonatomic, weak) id <HGDownloadItemDelegate> delegate;
 @property (nonatomic, copy, readonly) NSString *downloadUrl;
-@property (nonatomic, copy) NSString *filePath;
+@property (nonatomic, copy, readonly) NSString *filePath;
 @property (nonatomic, copy, readonly) NSString *fileName;
+/** 带后缀的名字 */
+@property (nonatomic, copy) NSString *fileExtensionName;
 @property (nonatomic, assign) int64_t downloadedSize;
 @property (nonatomic, assign) int64_t totalSize;
 @property (nonatomic, assign) HGDownloadStatus downloadStatus;

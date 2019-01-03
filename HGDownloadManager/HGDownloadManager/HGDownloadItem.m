@@ -38,10 +38,18 @@ NSString * const kDownloadTaskFinishedNotification = @"DownloadTaskFinishedNotif
     return self;
 }
 
+- (NSString *)filePath {
+    return [[HGDownloadManager manager].savePath stringByAppendingPathComponent:self.fileExtensionName];
+}
+
 - (HGProgressHandler)progressHandler {
     __weak typeof(self) weakSelf = self;
     return ^(int64_t downloadedSize, int64_t totalSize){
         weakSelf.downloadedSize = downloadedSize;
+        if (weakSelf.fileExtensionName.length == 0) {
+            weakSelf.fileExtensionName = [NSString stringWithFormat:@"%@.%@", weakSelf.fileName, [HGDownloadUtils getFileExtensionWithTask:weakSelf.downloadTask]];
+            [weakSelf updateToDB];
+        }
         if (weakSelf.totalSize == 0 || weakSelf.downloadStatus == HGDownloadStatusFinished) {
             weakSelf.totalSize = totalSize;
             [weakSelf updateToDB];
@@ -119,7 +127,7 @@ NSString * const kDownloadTaskFinishedNotification = @"DownloadTaskFinishedNotif
 
 + (void)initialize {
     //移除掉 不要的属性
-    [self removePropertyWithColumnNameArray:@[@"downloadTask", @"resumeData", @"delegate", @"timer", @"progressHandler", @"statusHandler"]];
+    [self removePropertyWithColumnNameArray:@[@"downloadTask", @"resumeData", @"delegate", @"timer", @"progressHandler", @"statusHandler", @"filePath"]];
 }
 
 //主键
